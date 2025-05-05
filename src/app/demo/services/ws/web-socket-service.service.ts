@@ -16,8 +16,8 @@ export class WebSocketService {
     }
 
     // Create a new WebSocket connection to the specified room
-    this.socket = new WebSocket(`ws://localhost:8000/api/v1/ws/${room}`);
-
+    //this.socket = new WebSocket(`ws://localhost:8000/api/v1/ws/${room}`);
+    this.socket = new WebSocket(`ws://las-ids-backend-1.onrender.com/api/v1/ws/${room}`);
     // On connection open
     this.socket.onopen = () => {
       console.log('✅ WebSocket connected to room:', room);

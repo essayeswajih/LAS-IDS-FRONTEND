@@ -9,8 +9,8 @@ import axios, { AxiosResponse } from 'axios';
 })
 export class StripeService {
   constructor(private auth: AuthService) {}
-  private baseUrl: any = "http://localhost:8000/api/v1/stripe/";
-
+  //private baseUrl: any = "http://localhost:8000/api/v1/stripe/";
+  private baseUrl: any = "https://las-ids-backend-1.onrender.com/api/v1/stripe/";
   private headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.auth.getToken()
