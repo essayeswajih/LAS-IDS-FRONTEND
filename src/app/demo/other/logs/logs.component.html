@@ -1,0 +1,56 @@
+<div class="row" >
+    <div class="col-sm-12" (click)="viewDetails()" style="cursor: pointer;">
+
+      <app-card cardTitle="Add New Log File" blockClass="pc-component" >
+      @if(isViewdetails){
+        <div (click)="$event.stopPropagation()">
+          @if(alert!="" || alert){
+            <div class="alert row">
+              {{alert}}
+            </div>
+          }
+          <app-upload-file (messageEvent)="receiveMessage($event)" (alertEvent)="handleAlert($event)"></app-upload-file >
+        </div>
+      }
+      </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Your Logs" blockClass="pc-component">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>From</th>
+                <th>Type</th>
+                <th>Rows Count</th>
+                <th>File Size</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (log of logs; track log) {
+                <tr>
+                  <td (click)="navigateToLog()" style="cursor: pointer;">{{ log?.file_name }}</td>
+                  <td>{{ log?.log_of }}</td>
+                  <td>{{ log?.file_type }}</td>
+                  <td>{{ log?.rows_count }}</td>
+                  <td>{{ log?.size }} MB</td>
+                  <td>{{ log?.updated_at | date:'medium' }}</td>
+                  <td style="z-index: 9">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="generateReport(log?.id)"style= "margin-right:5px !important" >Generate a report</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteLog(log?.id)" >Delete</button>
+                  </td>
+                </tr>
+              }
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+
+  
