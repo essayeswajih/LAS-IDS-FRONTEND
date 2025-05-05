@@ -21,7 +21,7 @@ export default class RegisterComponent {
 
   firstName = '';
   lastName = '';
-  company = 'Tunisia';
+  company = 'Progress Group LTD';
   email = 'info@EssayesWajih.com';
   password = '';
 
