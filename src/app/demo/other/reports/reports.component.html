@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Your Reports" blockClass="pc-component">
+      <!-- Loading Spinner -->
+      <div class="loading" *ngIf="isLoading">
+        <div class="spinner"></div>
+        Loading...
+      </div>
+
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Reports Table -->
+      <div class="table-responsive" *ngIf="!isLoading && reports.length > 0">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Created At</th>
+              <th>Number of Intrusions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reports" (click)="openIntrusions(report.id)" style="cursor: pointer;">
+              <td>{{ report?.id }}</td>
+              <td>{{ report?.title || 'N/A'}}</td>
+              <td>{{ report?.description || 'N/A' }}</td>
+              <td>{{ (report?.created_at | date:'medium' )|| 'N/A'}}</td>
+              <td>{{ report?.intrusion_count || 'N/A'}}</td>
+              <td style="z-index: 9" (click)="$event.stopPropagation()">
+                <button class="btn btn-danger btn-sm" (click)="deleteReport(report.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Reports Message -->
+      <div class="no-reports" *ngIf="!isLoading && reports.length === 0 && !errorMessage">
+        No reports found.
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="reports.length > 0">
+        <button 
+          class="btn btn-outline-primary btn-sm"
+          [disabled]="currentPage === 1" 
+          (click)="changePage(currentPage - 1)">
+          Previous
+        </button>
+        <span>Page {{ currentPage }}</span>
+        <button 
+          class="btn btn-outline-primary btn-sm"
+          (click)="changePage(currentPage + 1)">
+          Next
+        </button>
+      </div>
+    </app-card>
+  </div>
+</div>

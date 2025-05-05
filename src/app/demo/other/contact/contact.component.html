@@ -1,0 +1,69 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <app-card cardTitle="Contact Us" class="shadow-sm">
+        <div class="row g-4">
+          <!-- Contact Info -->
+          <div class="col-md-4 contact-info">
+            <h5 class="text-primary mb-3">Contact Information</h5>
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <i class="fas fa-envelope me-2 text-primary"></i>
+                <strong>Email:</strong> <a href="mailto:support@example.com">wajihsayes&#64;gmail.com</a>
+              </li>
+              <li class="mb-3">
+                <i class="fas fa-phone me-2 text-primary"></i>
+                <strong>Phone:</strong> +216 27 553 981
+              </li>
+              <li class="mb-3">
+                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                <strong>Address:</strong> 5021 Monastir, Tunisia
+              </li>
+              <li class="mb-3">
+                <i class="fas fa-clock me-2 text-primary"></i>
+                <strong>Hours:</strong> Mon-Fri, 9 AM - 5 PM
+              </li>
+            </ul>
+            <!-- Optional Image -->
+            <div class="mt-4">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207303.56160496647!2d10.707170986413757!3d35.72331268996262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13020df7d2a22397%3A0x1353da5b590534ac!2sPQ3X%2B8P9%2C%20Bembla%20and%20Manarah!5e0!3m2!1sen!2stn!4v1743091517745!5m2!1sen!2stn" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+          <!-- Contact Form -->
+          <div class="col-md-8">
+            <h5 class="text-primary mb-3">Send Us a Message</h5>
+            <form #contactFormRef="ngForm" (ngSubmit)="submitContactForm()" class="contact-form p-4 bg-light rounded shadow-sm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" 
+                         [(ngModel)]="contactForm.name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" 
+                         [(ngModel)]="contactForm.email" name="email" required email placeholder="Your Email">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" 
+                       [(ngModel)]="contactForm.subject" name="subject" required placeholder="Message Subject">
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="5" 
+                          [(ngModel)]="contactForm.message" name="message" required placeholder="Your Message"></textarea>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="!contactFormRef.valid">
+                  <i class="fas fa-paper-plane me-2"></i> Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

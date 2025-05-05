@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Contact Management">
+        <div class="row mb-4">
+          <div class="col-md-8">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search contacts..."
+                [(ngModel)]="searchTerm"
+                (ngModelChange)="filterContacts()"
+              />
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of filteredContacts">
+                <td>{{ contact.id ?? 'N/A' }}</td>
+                <td>{{ contact.name ?? 'N/A' }}</td>
+                <td>{{ contact.email ?? 'N/A' }}</td>
+                <td>{{ contact.subject ?? 'N/A' }}</td>
+                <td>
+                  <abbr [title]="contact.message">{{
+                    contact.message?.length > 50
+                      ? (contact.message | slice: 0:50) + '...'
+                      : contact.message ?? 'N/A'
+                  }}</abbr>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteContact(contact.id)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="14"
+                      height="14"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+               @if(filteredContacts.length === 0){
+                <tr>
+                    <td colspan="6" class="text-center">No contacts found</td>
+                </tr>
+                }
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>

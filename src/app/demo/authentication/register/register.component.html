@@ -1,0 +1,119 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="auth-header">
+        <a href="javascript:"><img src="assets/images/logo-dark.png" alt="logo img" height="50" /></a>
+      </div>
+      <div class="card my-5">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <h3 class="mb-0"><b>Sign up</b></h3>
+            <a [routerLink]="['/login']" class="link-primary">Already have an account?</a>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="form-label" for="firstName">First Name*</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First Name" [(ngModel)]="firstName" required />
+                <small class="text-danger" *ngIf="firstName && firstName.length < 4">
+                  First Name must be at least 4 characters long.
+                </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="form-label" for="lastName">Last Name*</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" [(ngModel)]="lastName" required />
+                <small class="text-danger" *ngIf="lastName && lastName.length < 4">
+                  Last Name must be at least 4 characters long.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="company">Company</label>
+            <input type="text" class="form-control" id="company" placeholder="Company" [(ngModel)]="company" required />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="emailAddress">Email Address*</label>
+            <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddress"
+                  placeholder="Email Address"
+                  [(ngModel)]="email"
+                  #emailControl="ngModel"
+                  required
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            />
+            <small class="text-danger" *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
+              Please enter a valid email address (e.g., user&#64;example.com).
+            </small>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              [(ngModel)]="password"
+              required
+            />
+            <small class="text-danger" *ngIf="password && password.length < 8">
+              Password must be at least 8 characters long.
+            </small>
+          </div>
+          <p class="mt-4 text-sm text-muted">
+            By Signing up, you agree to our
+            <a href="javascript:" class="text-primary">Terms of Service</a>
+            and
+            <a href="javascript:" class="text-primary">Privacy Policy</a>
+          </p>
+          <div class="d-grid mt-3">
+            <button
+            [disabled]="!firstName || !lastName || !email || !password || password.length < 8"
+            (click)="register()"
+            type="button"
+            class="btn btn-primary"
+          >
+            Create Account
+          </button>
+          </div>
+          <div class="saprator mt-3">
+            <span>Sign up with</span>
+          </div>
+          <div class="row">
+            @for (item of SignUpOptions; track item) {
+              <div class="col-4">
+                <div class="d-grid">
+                  <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
+                    <img src="{{ item.image }}" alt="google img" />
+                    <span class="d-none d-sm-inline-block">{{ item.name }}</span>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="auth-footer row">
+        <!-- <div class=""> -->
+        <div class="col my-1">
+          <p class="m-0">
+            Copyright ©
+            <a href="https://EssayesWajih.com/" target="_blank">EssayesWajih</a>
+          </p>
+        </div>
+        <div class="col-auto my-1">
+          <ul class="list-inline footer-link mb-0">
+            <li class="list-inline-item"><a href="https://EssayesWajih.com/" target="_blank">Home</a></li>
+            <li class="list-inline-item"><a href="https://EssayesWajih.com/privacy-policy/" target="_blank">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="https://EssayesWajih.support-hub.io/" target="_blank">Contact us</a></li>
+          </ul>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">IP Address Lookup</div>
+        <div class="card-body">
+          <!-- Input Form -->
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter IP Address (e.g., 102.173.83.85)"
+              [(ngModel)]="ipAddress"
+              (keypress)="onKeyPress($event)"
+              aria-label="IP Address"
+            />
+            <button class="btn btn-primary" (click)="fetchIPDetails()">Get Details</button>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div class="loading" *ngIf="isLoading">
+            <div class="spinner"></div>
+            Loading...
+          </div>
+
+          <!-- Error Message -->
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <!-- IP Details Table -->
+          <div class="table-responsive" *ngIf="!isLoading && ipDetails">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IP</td>
+                  <td>{{ ipDetails.ip || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Network</td>
+                  <td>{{ ipDetails.network || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Version</td>
+                  <td>{{ ipDetails.version || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td>{{ ipDetails.city || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Region</td>
+                  <td>{{ ipDetails.region || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td>{{ ipDetails.country_name || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Country Code</td>
+                  <td>{{ ipDetails.country_code || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Capital</td>
+                  <td>{{ ipDetails.country_capital || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Latitude</td>
+                  <td>{{ ipDetails.latitude || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Longitude</td>
+                  <td>{{ ipDetails.longitude || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Timezone</td>
+                  <td>{{ ipDetails.timezone || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>UTC Offset</td>
+                  <td>{{ ipDetails.utc_offset || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Currency</td>
+                  <td>{{ ipDetails.currency ? ipDetails.currency + ' (' + ipDetails.currency_name + ')' : 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Languages</td>
+                  <td>{{ ipDetails.languages || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>ASN</td>
+                  <td>{{ ipDetails.asn || 'N/A' }}</td>
+                </tr>
+                <tr>
+                  <td>Organization</td>
+                  <td>{{ ipDetails.org || 'N/A' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- No Data Message -->
+          <div class="no-data" *ngIf="!isLoading && !ipDetails && !errorMessage">
+            No IP details found. Please enter a valid IP address.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

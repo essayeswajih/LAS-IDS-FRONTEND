@@ -1,0 +1,500 @@
+<div class="row" >
+    <div class="col-sm-2" style="cursor: pointer;">
+        <app-card cardTitle="Your Files to Filter" blockClass="pc-component" >
+            <div class="form-group" >
+            <label for="selectedFile">File selected</label>
+            <select class="form-control" id="selectedFile" [(ngModel)]="selectedFile" (change)="fileChange()">
+                @for(log of AllLogs; track log){
+                <option value="{{log.id}}">({{log.file_name}})</option>
+                }
+            </select>
+            </div>
+        </app-card>
+      </div>
+    <div class="col-sm-10" style="cursor: pointer;">
+      <app-card cardTitle="Your Filter" blockClass="pc-component" >
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="example">
+              @if(this.logFile?.file_type === 'access'){
+                <tbody>
+                    <tr>
+                        <td><div class="form-group">
+                            <label for="Status">Status</label>
+                            <select class="form-control" id="Status" [(ngModel)]="statusOption">
+                              @for( opt of StatusFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                            </select>
+                            <select class="form-control" id="StatusFiltreValues" [(ngModel)]="statusValue">
+                              @for( val of StatusFiltreValues; track val){
+                                <option value="{{val.substr(0,3)}}">{{val}}</option>
+                              }
+                              </select>
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="IP">IP Address</label>
+                            <select class="form-control" id="IP" [(ngModel)]="ipsOption">
+                              @for( opt of IPFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <input type="text" class="form-control" [(ngModel)]="ipsValue">
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="Method">Method</label>
+                            <select class="form-control" id="Method" [(ngModel)]="methodOption">
+                              @for( opt of MethodFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <select class="form-control" id="MethodFiltreValues" [(ngModel)]="methodValue"ng ng>
+                                @for( val of MethodFiltreValues; track val){
+                                  <option value="{{val}}">{{val}}</option>
+                                }
+                              </select>
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="Path">Path</label>
+                            <select class="form-control" id="Path" [(ngModel)]="pathOption">
+                              @for( opt of PathFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <input type="text" class="form-control" [(ngModel)]="pathValue">
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="Request">Request</label>
+                            <select class="form-control" id="Request" [(ngModel)]="requestOption">
+                              @for( opt of RequestFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <input type="text" class="form-control" [(ngModel)]="requestValue">
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="UserAgent">User Agent</label>
+                            <select class="form-control" id="UserAgent" [(ngModel)]="userAgentOption">
+                              @for( opt of UserAgentFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <input type="text" class="form-control" [(ngModel)]="userAgentValue">
+                        </div></td>
+                        <td><div class="form-group">
+                            <label for="Referrer">Referrer</label>
+                            <select class="form-control" id="Referrer" [(ngModel)]="referrerOption">
+                              @for( opt of ReferrerFiltreChoises; track opt){
+                                <option value="{{opt}}">{{opt}}</option>
+                              }
+                              </select>
+                              <input type="text" class="form-control" [(ngModel)]="referrerValue">
+                        </div></td>
+                        <td>
+                          <button class="btn btn-primary" (click)="applyFilter()">Apply Filter</button>
+                          <button class="btn btn-danger" (click)="clearFilter()">Clear Filter</button>
+                        </td>
+                    </tr>
+                </tbody>
+              }@else if (this.logFile.file_type === 'error') {
+                <tbody>
+                  <tr>
+                      <td><div class="form-group">
+                          <label for="IP">IP Address</label>
+                          <select class="form-control" id="IP" [(ngModel)]="ipsOption">
+                            @for( opt of IPFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="ipsValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="Method">Date Time</label>
+                          <select class="form-control" id="Method" [(ngModel)]="methodOption">
+                            @for( opt of MethodFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <select class="form-control" id="MethodFiltreValues" [(ngModel)]="methodValue"ng ng>
+                              @for( val of MethodFiltreValues; track val){
+                                <option value="{{val}}">{{val}}</option>
+                              }
+                            </select>
+                      </div></td>
+                      <td><div class="form-group">
+                        <label for="Path">Module</label>
+                        <select class="form-control" id="Path" [(ngModel)]="moduleOption">
+                          @for( opt of ModuleFiltreChoises; track opt){
+                            <option value="{{opt}}">{{opt}}</option>
+                          }
+                          </select>
+                          <input type="text" class="form-control" [(ngModel)]="moduleValue">
+                    </div></td>
+                      <td><div class="form-group">
+                          <label for="Path">Level</label>
+                          <select class="form-control" id="Path" [(ngModel)]="levelOption">
+                            @for( opt of LevelFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <select class="form-control" id="MethodFiltreValues" [(ngModel)]="levelValue"ng ng>
+                              @for( val of LevelFiltreValues; track val){
+                                <option value="{{val}}">{{val}}</option>
+                              }
+                            </select>
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="Request">Message</label>
+                          <select class="form-control" id="Request" [(ngModel)]="messageOption">
+                            @for( opt of MessageFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="messageValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="UserAgent">PID</label>
+                          <select class="form-control" id="UserAgent" [(ngModel)]="pidOption">
+                            @for( opt of PidFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="pidValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="Referrer">TID</label>
+                          <select class="form-control" id="Referrer" [(ngModel)]="tidOption">
+                            @for( opt of TidFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="tidValue">
+                      </div></td>
+                      <td>
+                        <button class="btn btn-primary" (click)="applyFilter()">Apply Filter</button>
+                        <button class="btn btn-danger" (click)="clearFilter()">Clear Filter</button>
+                      </td>
+                  </tr>
+              </tbody>
+              }@else {
+                <tbody>
+                  <tr>
+                      <td><div class="form-group">
+                          <label for="IP">IP Address</label>
+                          <select class="form-control" id="IP" [(ngModel)]="ipsOption">
+                            @for( opt of IPFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="ipsValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="Method">Date Time</label>
+                          <select class="form-control" id="Method" [(ngModel)]="methodOption">
+                            @for( opt of MethodFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <select class="form-control" id="MethodFiltreValues" [(ngModel)]="methodValue"ng ng>
+                              @for( val of MethodFiltreValues; track val){
+                                <option value="{{val}}">{{val}}</option>
+                              }
+                            </select>
+                      </div></td>
+                      <td><div class="form-group">
+                        <label for="Status">Status</label>
+                        <select class="form-control" id="Status" [(ngModel)]="statusOption">
+                          @for( opt of StatusFiltreChoises; track opt){
+                            <option value="{{opt}}">{{opt}}</option>
+                          }
+                        </select>
+                        <select class="form-control" id="StatusFiltreValues" [(ngModel)]="statusValue">
+                          @for( val of StatusFiltreValues; track val){
+                            <option value="{{val.substr(0,3)}}">{{val}}</option>
+                          }
+                          </select>
+                    </div></td>
+                      <td><div class="form-group">
+                        <label for="Path">Module</label>
+                        <select class="form-control" id="Path" [(ngModel)]="moduleOption">
+                          @for( opt of ModuleFiltreChoises; track opt){
+                            <option value="{{opt}}">{{opt}}</option>
+                          }
+                          </select>
+                          <input type="text" class="form-control" [(ngModel)]="moduleValue">
+                    </div></td>
+                    <td><div class="form-group">
+                      <label for="Method">Method</label>
+                      <select class="form-control" id="Method" [(ngModel)]="methodOption">
+                        @for( opt of MethodFiltreChoises; track opt){
+                          <option value="{{opt}}">{{opt}}</option>
+                        }
+                        </select>
+                        <select class="form-control" id="MethodFiltreValues" [(ngModel)]="methodValue"ng ng>
+                          @for( val of MethodFiltreValues; track val){
+                            <option value="{{val}}">{{val}}</option>
+                          }
+                        </select>
+                  </div></td>
+                  <td><div class="form-group">
+                      <label for="Path">Path</label>
+                      <select class="form-control" id="Path" [(ngModel)]="pathOption">
+                        @for( opt of PathFiltreChoises; track opt){
+                          <option value="{{opt}}">{{opt}}</option>
+                        }
+                        </select>
+                        <input type="text" class="form-control" [(ngModel)]="pathValue">
+                    </div></td>
+                      <td><div class="form-group">
+                          <label for="Level">Level</label>
+                          <select class="form-control" id="Level" [(ngModel)]="levelOption">
+                            @for( opt of LevelFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <select class="form-control" id="MethodFiltreValues" [(ngModel)]="levelValue"ng ng>
+                              @for( val of LevelFiltreValues; track val){
+                                <option value="{{val}}">{{val}}</option>
+                              }
+                            </select>
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="Message">Message</label>
+                          <select class="form-control" id="Message" [(ngModel)]="messageOption">
+                            @for( opt of MessageFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="messageValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="PID">PID</label>
+                          <select class="form-control" id="PID" [(ngModel)]="pidOption">
+                            @for( opt of PidFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="pidValue">
+                      </div></td>
+                      <td><div class="form-group">
+                          <label for="TID">TID</label>
+                          <select class="form-control" id="TID" [(ngModel)]="tidOption">
+                            @for( opt of TidFiltreChoises; track opt){
+                              <option value="{{opt}}">{{opt}}</option>
+                            }
+                            </select>
+                            <input type="text" class="form-control" [(ngModel)]="tidValue">
+                      </div></td>
+                      <td>
+                        <button class="btn btn-primary" (click)="applyFilter()">Apply Filter</button>
+                        <button class="btn btn-danger" (click)="clearFilter()">Clear Filter</button>
+                      </td>
+                  </tr>
+              </tbody>
+              }
+            </table>
+        </div>
+      </app-card>
+    </div>
+</div>
+@if(this.logFile.file_type === 'access'){
+<div class="row" >
+    <div class="col-sm-12" style="cursor: pointer;">
+      <app-card cardTitle="Your Result" blockClass="pc-component" >
+        <div class="col-md-12 ">
+            <div class="card tbl-card">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <td><button class="btn" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button></td>
+                      <td><button class="btn"(click)="nextPage()" [disabled]="currentPage * limit >= logFile.rows_count">Next</button></td>
+                      <td>Page: {{ currentPage }}</td>
+                      <td>Total: {{ logFile.rows_count/10 }}</td>
+                    </tr>
+                    <tr>
+                      <th>IP</th>
+                      <th>USER</th>
+                      <th>DATE TIME</th>
+                      <th>METHOD</th>
+                      <th>URL</th>
+                      <th>STATUS CODE</th>
+                      <th>REQUEST SIZE</th>
+                      <th>USER AGENT</th>
+                      <th class="text-end">REFERRER</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of logFileRows; track row) {
+                      <tr>
+                        <td>
+                          <a href="javascript:" class="text-muted">{{ row.ip }}</a>
+                        </td>
+                        <td>{{ row.user }}</td>
+                        <td>{{ row.timestamp }}</td>
+                        <td>{{ row.method }}</td>
+                        <td style="max-width: 350px;"><abbr [title]="row.url">{{ row?.url }}</abbr></td>
+                        <td >
+                          <span>
+                            <i class="badge-circle {{ row.status }} f-10 m-r-5"></i>
+                            {{ row.status }}
+                          </span>
+                        </td>
+                        <td >{{ row.response_size }}</td>
+                        <td style="max-width: 350px;">{{ row.user_agent }}</td>
+                        <td class="text-end" style="max-width: 350px;">{{row.referer}}</td>
+
+                      </tr>
+                    }
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td><button class="btn" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button></td>
+                      <td><button class="btn"(click)="nextPage()" [disabled]="currentPage * limit >= logFile.rows_count">Next</button></td>
+                      <td>Page: {{ currentPage  }}</td>
+                      <td>Total: {{ logFile.rows_count/10 }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+      </app-card>
+    </div>
+</div>
+}@else if (this.logFile.file_type === 'error') {
+  <div class="row" >
+    <div class="col-sm-12" style="cursor: pointer;">
+      <app-card cardTitle="Your Result" blockClass="pc-component" >
+        <div class="col-md-12 ">
+            <div class="card tbl-card">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th>IP</th>
+                      <th>DATE TIME</th>
+                      <th>MODULE</th>
+                      <th>LEVEL</th>
+                      <th class="text-end">MESSAGE</th>
+                      <th class="text-end">PID</th>
+                      <th class="text-end">TID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of logFileRows; track row) {
+                      <tr>
+                        <td>
+                          <a href="javascript:" class="text-muted">{{ row.ip }}</a>
+                        </td>
+                        <td>{{ row.timestamp }}</td>
+                        <td>{{ row.module }}</td>
+                        <td>{{ row.level }}</td>
+                        <td class="text-end">
+                          <span>
+                            <i class="badge-circle {{ row.status }} f-10 m-r-5"></i>
+                            {{ row.message }}
+                          </span>
+                        </td>
+                        <td class="text-end">{{row.pid}}</td>
+                        <td class="text-end">{{row.tid}}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </app-card>
+    </div>
+</div>
+}@else {
+  <div class="row">
+    <div class="col-sm-12" style="cursor: pointer;">
+      <app-card cardTitle="Your Result" blockClass="pc-component">
+        <div class="col-md-12">
+          <div class="card tbl-card">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>DATE TIME</th>
+                    <th>METHOD</th>
+                    <th>PATH</th>
+                    <th>STATUS</th>
+                    <th>MESSAGE</th>
+                    <th>USER</th>
+                    <th>USER AGENT</th>
+                    <th>REFERER</th>
+                    <th>LEVEL</th>
+                    <th>REQUEST</th>
+                    <th>SRC PORT</th>
+                    <th>DEST PORT</th>
+                    <th>PROTOCOL</th>
+                    <th>HOSTNAME</th>
+                    <th>COMPUTER NAME</th>
+                    <th>ACCOUNT NAME</th>
+                    <th>RESPONSE SIZE</th>
+                    <th>EVENT ID</th>
+                    <th>PID</th>
+                    <th>TID</th>
+                    <th>MODULE</th>
+                    <th>COMPONENT</th>
+                    <th>LEVEL DISPLAY NAME</th>
+                    <th>TASK DISPLAY NAME</th>
+                    <th>PROVIDER NAME</th>
+                    <th>ENTRY TYPE</th>
+                    <th>REMOTE LOGNAME</th>
+                    <th class="text-end">RUN AS USER</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of logFileRows; track row) {
+                    <tr>
+                      <td>
+                        <a href="javascript:" class="text-muted">{{ row.ip || 'N/A' }}</a>
+                      </td>
+                      <td>{{ row.timestamp || 'N/A' }}</td>
+                      <td>{{ row.method || 'N/A' }}</td>
+                      <td>{{ row.url || 'N/A' }}</td>
+                      <td>{{ row.status || 'N/A' }}</td>
+                      <td>
+                        <span>
+                          <i class="badge-circle {{ row.status || 'N/A' }} f-10 m-r-5"></i>
+                          {{ row.message || 'N/A' }}
+                        </span>
+                      </td>
+                      <td>{{ row.user || 'N/A' || 'N/A' }}</td>
+                      <td>{{ row.user_agent || 'N/A' }}</td>
+                      <td>{{ row.referer || 'N/A' }}</td>
+                      <td>{{ row.level || 'N/A' }}</td>
+                      <td>{{ row.request || 'N/A' }}</td>
+                      <td>{{ row.src_port || 'N/A' }}</td>
+                      <td>{{ row.dest_port || 'N/A' }}</td>
+                      <td>{{ row.protocol || 'N/A' }}</td>
+                      <td>{{ row.hostname || 'N/A' }}</td>
+                      <td>{{ row.computer_name || 'N/A' }}</td>
+                      <td>{{ row.account_name || 'N/A' }}</td>
+                      <td>{{ row.response_size }}</td>
+                      <td>{{ row.event_id || 'N/A' }}</td>
+                      <td>{{ row.pid || 'N/A' }}</td>
+                      <td>{{ row.tid || 'N/A' }}</td>
+                      <td>{{ row.module || 'N/A' }}</td>
+                      <td>{{ row.component || 'N/A' }}</td>
+                      <td>{{ row.level_display_name || 'N/A' }}</td>
+                      <td>{{ row.task_display_name || 'N/A' }}</td>
+                      <td>{{ row.provider_name || 'N/A' }}</td>
+                      <td>{{ row.entry_type || 'N/A' }}</td>
+                      <td>{{ row.remote_logname || 'N/A' }}</td>
+                      <td  class="text-end">{{ row.run_as_user || 'N/A' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+}

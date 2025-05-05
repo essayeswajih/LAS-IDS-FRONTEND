@@ -1,0 +1,80 @@
+<!-- Vertical layout -->
+<ng-scrollbar style="height: calc(100vh - 60px)" visibility="hover" id="nav-ps-mantis">
+  <div class="navbar-content">
+    <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()" (mouseleave)="navMob()">
+      @for (item of navigations; track item) {
+        @if (item.type === 'group' && item.title === 'Admin' && isAdmin) {
+          <app-nav-group [item]="item"></app-nav-group>
+        }
+        <!-- Show Us group to all users (remove !isAdmin restriction) -->
+        @if (item.type === 'group' && item.title === 'Us' &&!isAdmin) {
+          <app-nav-group [item]="item"></app-nav-group>
+        }
+        <!-- Show other groups except Authentication and Admin to all users -->
+        @if (item.type === 'group' && item.title !== 'Authentication' && item.title !== 'Admin' && item.title !== 'Us' &&item.title!='Removed') {
+          <app-nav-group [item]="item"></app-nav-group>
+        }
+      }
+    </ul>
+    @if (subscribeIsLoading) {
+      <div class="center">
+        <p style="text-align: center;">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...</p>
+      </div>
+    }@else if( isAdmin ){
+      <div class="m-4 mb-0">
+        <div class="card nav-card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center">
+              <img src="assets/images/avatar-group.png" alt="user" class="img-fluid" />
+              <div class="m-t-20 text-center">
+                <h5 class="mb-0">Log Analyses System Adminstrator</h5>
+                <span class="text-muted">Welcome Admin</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else if( !isSubscribed ){
+    <div class="m-4 mb-0">
+      <div class="card nav-card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center">
+            <img src="assets/images/avatar-group.png" alt="user" class="img-fluid" />
+            <div class="m-t-20 text-center">
+              <h5 class="mb-0">Log Analyses System Pro</h5>
+              <span class="text-muted">Checkout pro features</span>
+            </div>
+            <div class="m-t-20 text-center">
+              <button
+                (click)="redirectToCheckout()"
+                href="https://EssayesWajih.com/item/mantis-angular-admin-template/?utm_source=free_demo&utm_medium=EssayesWajih&utm_campaign=button_download_premium"
+                target="_blank"
+                class="btn btn-primary text-white"
+              >
+                Pro
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="m-4 mb-0">
+      <div class="card nav-card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center">
+            <img src="assets/images/avatar-group.png" alt="user" class="img-fluid" />
+            <div class="m-t-20 text-center">
+              <h5 class="mb-0">Log Analyses System Pro</h5>
+              <span class="text-muted">We Missed You</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  </div>
+
+</ng-scrollbar>

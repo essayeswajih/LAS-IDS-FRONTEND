@@ -1,0 +1,166 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-12 col-lg-12">
+    <app-card cardTitle="My Profile" cardClass="shadow-sm">
+      <div *ngIf="user; else loading" class="p-3">
+        <div class="row align-items-center mb-4">
+          <div class="col-md-8">
+            <h5 class="fw-bold text-primary mb-3">User Details</h5>
+            <dl class="row mb-0">
+              <dt class="col-sm-4 fw-semibold">ID</dt>
+              <dd class="col-sm-8">{{ user.id ?? 'N/A' }}</dd>
+              <dt class="col-sm-4 fw-semibold">Username</dt>
+              <dd class="col-sm-8">{{ user.username ?? 'N/A' }}</dd>
+              <dt class="col-sm-4 fw-semibold">First Name</dt>
+              <dd class="col-sm-8">{{ user.firstName ?? 'N/A' }}</dd>
+              <dt class="col-sm-4 fw-semibold">Last Name</dt>
+              <dd class="col-sm-8">{{ user.lastName ?? 'N/A' }}</dd>
+              <dt class="col-sm-4 fw-semibold">Company</dt>
+              <dd class="col-sm-8">{{ user.company ?? 'N/A' }}</dd>
+              <dt class="col-sm-4 fw-semibold">Role</dt>
+              <dd class="col-sm-8">{{ user.role }}</dd>
+              <dt class="col-sm-4 fw-semibold">Email</dt>
+              <dd class="col-sm-8">{{ user.email }}</dd>
+              <dt class="col-sm-4 fw-semibold">Room Name</dt>
+              <dd class="col-sm-8">{{ user.roomName ?? 'N/A' }}</dd>
+            </dl>
+          </div>
+          <div class="col-md-4 text-md-end text-center mt-3 mt-md-0">
+            <button
+              class="btn btn-primary btn-lg px-4"
+              (click)="openEditProfileModal()"
+              [disabled]="!user"
+            >
+              <i class="fas fa-edit me-2"></i> Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #loading>
+        <div class="text-center p-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2">Loading profile...</p>
+        </div>
+      </ng-template>
+    </app-card>
+  </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div
+  class="modal fade"
+  id="profileModal"
+  tabindex="-1"
+  aria-labelledby="profileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-light border-bottom">
+        <h5 class="modal-title fw-bold text-dark" id="profileModalLabel">
+          Edit Profile
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="isEditMode = false"
+        ></button>
+      </div>
+      <div class="modal-body p-4">
+        <form #profileForm="ngForm" (ngSubmit)="saveProfile()">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Username</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.username"
+              name="username"
+              placeholder="Enter username"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">First Name</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.firstName"
+              name="firstName"
+              placeholder="Enter first name"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Last Name</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.lastName"
+              name="lastName"
+              placeholder="Enter last name"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Company</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.company"
+              name="company"
+              placeholder="Enter company name"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input
+              type="email"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.email"
+              name="email"
+              required
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Room Name</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.roomName"
+              name="roomName"
+              placeholder="Enter room name"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">New Password (optional)</label>
+            <input
+              type="password"
+              class="form-control form-control-lg"
+              [(ngModel)]="editedUser.hashed_password"
+              name="hashed_password"
+              placeholder="Enter new password"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-top bg-light">
+        <button
+          type="button"
+          class="btn btn-outline-secondary px-4"
+          data-bs-dismiss="modal"
+          (click)="isEditMode = false"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary px-4"
+          (click)="saveProfile()"
+          [disabled]="!profileForm.valid"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

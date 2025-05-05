@@ -1,0 +1,112 @@
+[
+  {
+    "ip": "192.168.1.1",
+    "user": "JohnDoe",
+    "date_time": "2025-01-09T10:30:00Z",
+    "method": "GET",
+    "url": "/login",
+    "size": "40",
+    "status": "401",
+    "status_type": "bg-danger",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+  },
+  {
+    "ip": "172.16.0.12",
+    "user": "AliceSmith",
+    "date_time": "2025-01-09T11:00:00Z",
+    "method": "POST",
+    "url": "/api/register",
+    "size": "120",
+    "status": "200",
+    "status_type": "bg-success",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36"
+  },
+  {
+    "ip": "10.0.0.5",
+    "user": "ChrisBrown",
+    "date_time": "2025-01-09T11:15:00Z",
+    "method": "PUT",
+    "url": "/api/user/update",
+    "size": "250",
+    "status": "403",
+    "status_type": "bg-warning",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ip": "203.0.113.42",
+    "user": "SarahLee",
+    "date_time": "2025-01-09T12:00:00Z",
+    "method": "DELETE",
+    "url": "/api/resource/123",
+    "size": "0",
+    "status": "404",
+    "status_type": "bg-danger",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:115.0) Gecko/20100101 Firefox/115.0"
+  },
+  {
+    "ip": "198.51.100.25",
+    "user": "MichaelGreen",
+    "date_time": "2025-01-09T12:30:00Z",
+    "method": "GET",
+    "url": "/dashboard",
+    "size": "500",
+    "status": "200",
+    "status_type": "bg-success",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
+  },
+  {
+    "ip": "192.168.1.1",
+    "user": "JohnDoe",
+    "date_time": "2025-01-09T10:30:00Z",
+    "method": "GET",
+    "url": "/login",
+    "size": "40",
+    "status": "401",
+    "status_type": "bg-danger",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+  },
+  {
+    "ip": "172.16.0.12",
+    "user": "AliceSmith",
+    "date_time": "2025-01-09T11:00:00Z",
+    "method": "POST",
+    "url": "/api/register",
+    "size": "120",
+    "status": "200",
+    "status_type": "bg-success",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36"
+  },
+  {
+    "ip": "10.0.0.5",
+    "user": "ChrisBrown",
+    "date_time": "2025-01-09T11:15:00Z",
+    "method": "PUT",
+    "url": "/api/user/update",
+    "size": "250",
+    "status": "403",
+    "status_type": "bg-warning",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ip": "203.0.113.42",
+    "user": "SarahLee",
+    "date_time": "2025-01-09T12:00:00Z",
+    "method": "DELETE",
+    "url": "/api/resource/123",
+    "size": "0",
+    "status": "404",
+    "status_type": "bg-danger",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:115.0) Gecko/20100101 Firefox/115.0"
+  },
+  {
+    "ip": "198.51.100.25",
+    "user": "MichaelGreen",
+    "date_time": "2025-01-09T12:30:00Z",
+    "method": "GET",
+    "url": "/dashboard",
+    "size": "500",
+    "status": "200",
+    "status_type": "bg-success",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
+  }
+]

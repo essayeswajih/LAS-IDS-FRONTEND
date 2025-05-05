@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="70" viewBox="0 0 1170 350">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="white" />
+
+  <!-- Logo (L'AS Design) -->
+  <path d="M 125,175 C 75,50 25,50 0,175 C 25,250 75,250 125,175 Z" fill="#042d62" />
+  <path d="M 75,175 C 65,150 35,150 25,175 C 35,200 65,200 75,175 Z" fill="white" />
+  <path d="M 55,185 C 55,180 50,175 45,175 C 40,175 35,180 35,185 C 35,190 40,195 45,195 C 50,195 55,190 55,185 Z" fill="#042d62" />
+
+  <!-- Text -->
+  <text x="250" y="150" font-size="60px" font-family="Arial" font-weight="bold">
+    <tspan fill="#042d62">L</tspan>
+    <tspan fill="#096dd9">OG</tspan>
+  </text>
+  <text x="450" y="150" font-size="60px" font-family="Arial" font-weight="bold">
+    <tspan fill="#042d62">A</tspan>
+    <tspan fill="#096dd9">NALYSES</tspan>
+  </text>
+  <text x="350" y="250" font-size="60px" font-family="Arial" font-weight="bold">
+    <tspan fill="#042d62">S</tspan>
+    <tspan fill="#096dd9">YSTEM</tspan>
+  </text>
+</svg>

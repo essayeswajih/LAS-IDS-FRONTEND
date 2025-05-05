@@ -1,0 +1,18 @@
+.success-card {
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

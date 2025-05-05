@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h5 class="mb-0">TOP</h5>
+  <div class="d-flex gap-2 chart-income">
+    <div
+      *ngFor="let category of categories"
+      class="chart-income"
+      [class.active]="activeCategory === category"
+      (click)="toggleActive(category)"
+    >
+      {{ category }}
+    </div>
+  </div>
+</div>
+<div class="card">
+  @defer (when chartOptions) {
+  <div class="card-body">
+    <div id="chart">
+      <apx-chart 
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [dataLabels]="chartOptions.dataLabels"
+        [xaxis]="chartOptions.xaxis"
+        [colors]="chartOptions.colors"
+        [stroke]="chartOptions.stroke"
+        [yaxis]="chartOptions.yaxis"
+        [grid]="chartOptions.grid"
+        [theme]="chartOptions.theme"
+      ></apx-chart>
+    </div>
+  </div>
+}
+</div>

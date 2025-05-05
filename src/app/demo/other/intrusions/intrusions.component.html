@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Intrusions for Report #{{ reportId }}" blockClass="pc-component">
+      <!-- Loading Spinner -->
+      <div class="loading" *ngIf="isLoading">
+        <div class="spinner"></div>
+        Loading...
+      </div>
+
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Intrusions Table -->
+      <div class="table-responsive" *ngIf="!isLoading && intrusions.length > 0">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Detected Attack</th>
+              <th>Description</th>
+              <th>Severity</th>
+              <th>Detected At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let intrusion of intrusions">
+              <td>{{ intrusion.id }}</td>
+              <td>{{ intrusion.detected_attack || 'N/A' }}</td>
+              <td>{{ intrusion.description }}</td>
+              <td>{{ intrusion.severity || 'N/A' }}</td>
+              <td>{{ intrusion.timestamp | date:'medium' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Intrusions Message -->
+      <div class="no-intrusions" *ngIf="!isLoading && intrusions.length === 0 && !errorMessage">
+        No intrusions found for this report.
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="total > 0">
+        <button 
+          class="btn btn-outline-primary btn-sm"
+          [disabled]="currentPage === 1" 
+          (click)="changePage(currentPage - 1)">
+          Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }} (Total: {{ total }})</span>
+        <button 
+          class="btn btn-outline-primary btn-sm"
+          [disabled]="currentPage === totalPages" 
+          (click)="changePage(currentPage + 1)">
+          Next
+        </button>
+      </div>
+
+      <button class="btn btn-secondary btn-sm mt-3" (click)="goBack()">Back to Reports</button>
+    </app-card>
+  </div>
+</div>
