@@ -36,12 +36,11 @@
                 <td>{{ contact.name ?? 'N/A' }}</td>
                 <td>{{ contact.email ?? 'N/A' }}</td>
                 <td>{{ contact.subject ?? 'N/A' }}</td>
-                <td>
-                  <abbr [title]="contact.message">{{
+                <td>{{
                     contact.message?.length > 50
-                      ? (contact.message | slice: 0:50) + '...'
+                      ? (contact.message | slice: 0:100) + '...'
                       : contact.message ?? 'N/A'
-                  }}</abbr>
+                  }}
                 </td>
                 <td>
                   <button

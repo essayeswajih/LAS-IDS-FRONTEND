@@ -72,7 +72,7 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'user-managment',
-        title: 'User managment',
+        title: 'User Managment',
         type: 'item',
         classes: 'nav-item',
         url: '/user-managment',
@@ -80,10 +80,18 @@ export const NavigationItems: NavigationItem[] = [
       },
       {
         id: 'contact-managment',
-        title: 'Contact managment',
+        title: 'Contact Managment',
         type: 'item',
         classes: 'nav-item',
         url: '/contact-managment',
+        icon: 'mail'
+      },
+      {
+        id: 'IP-Lookup',
+        title: 'IP Lookup',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/IP-Lookup',
         icon: 'mail'
       },
     ]

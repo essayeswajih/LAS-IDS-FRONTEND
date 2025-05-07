@@ -80,11 +80,11 @@ const routes: Routes = [
         loadComponent: () => import('./demo/other/reports/reports.component'),
       },
       {
-        path: 'intrusions/:reportId',  // Changed to use reportId parameter
+        path: 'intrusions/:reportId', 
         loadComponent: () => import('./demo/other/intrusions/intrusions.component')
       },
       {
-        path: 'who-is',  // Changed to use reportId parameter
+        path: 'IP-Lookup', 
         loadComponent: () => import('./demo/other/who-is/who-is.component')
       },
       {
