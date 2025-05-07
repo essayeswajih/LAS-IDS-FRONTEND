@@ -86,14 +86,6 @@ export const NavigationItems: NavigationItem[] = [
         url: '/contact-managment',
         icon: 'mail'
       },
-      {
-        id: 'IP-Lookup',
-        title: 'IP Lookup',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/IP-Lookup',
-        icon: 'mail'
-      },
     ]
   },
   {
