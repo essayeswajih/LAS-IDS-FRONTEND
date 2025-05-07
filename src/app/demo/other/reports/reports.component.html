@@ -31,7 +31,7 @@
               <td>{{ report?.title || 'N/A'}}</td>
               <td>{{ report?.description || 'N/A' }}</td>
               <td>{{ (report?.created_at | date:'medium' )|| 'N/A'}}</td>
-              <td>{{ report?.intrusion_count || 'N/A'}}</td>
+              <td>{{ report?.intrusion_count || '0'}}</td>
               <td style="z-index: 9" (click)="$event.stopPropagation()">
                 <button class="btn btn-danger btn-sm" (click)="deleteReport(report.id)">Delete</button>
               </td>
