@@ -144,23 +144,13 @@ export const NavigationItems: NavigationItem[] = [
     icon: 'icon-navigation',
     children: [
       {
-        id: 'sample-page',
-        title: 'Sample Page',
+        id: 'IP-Lookup',
+        title: 'IP Lookup',
         type: 'item',
-        url: '/sample-page',
         classes: 'nav-item',
-        icon: 'chrome'
+        url: '/IP-Lookup',
+        icon: 'mail'
       },
-      {
-        id: 'document',
-        title: 'Document',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://EssayesWajih.gitbook.io/mantis-angular/',
-        icon: 'question',
-        target: true,
-        external: true
-      }
     ]
   },
   {
