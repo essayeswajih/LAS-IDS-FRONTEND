@@ -7,8 +7,8 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = 'http://localhost:8000/auth/sign_in';
-  //private authUrl = 'https://las-ids-backend-1.onrender.com/auth/sign_in';
+  //private authUrl = 'http://localhost:8000/auth/sign_in';
+  private authUrl = 'https://las-ids-backend-1.onrender.com/auth/sign_in';
   constructor(private toastr: ToastrService) {}
   async login(username: string, password: string): Promise<any> {
     try {
