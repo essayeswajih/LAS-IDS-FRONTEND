@@ -3,14 +3,16 @@ import { Injectable } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { AuthService } from '../../services/auth/auth.service';
 import axios, { AxiosResponse } from 'axios';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StripeService {
   constructor(private auth: AuthService) {}
+  private baseUrl = environment.baseUrl+"/api/v1/stripe/";
   //private baseUrl: any = "http://localhost:8000/api/v1/stripe/";
-  private baseUrl: any = "https://las-ids-backend-1.onrender.com/api/v1/stripe/";
+  //private baseUrl: any = "https://las-ids-backend-1.onrender.com/api/v1/stripe/";
   private headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.auth.getToken()

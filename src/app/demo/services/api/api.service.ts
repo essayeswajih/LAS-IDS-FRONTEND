@@ -3,15 +3,16 @@ import axios, { AxiosResponse } from 'axios';
 import { AuthService } from '../auth/auth.service';
 import { ContactForm } from 'src/app/demo/other/contact/contact.component';
 import { Intrusion } from '../../other/reports/reports.component';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   constructor(private auth: AuthService) {}
-
+  private baseUrl = environment.baseUrl+"/api/v1/";
   //private baseUrl: any = "http://localhost:8000/api/v1/";
-  private baseUrl: any = "https://las-ids-backend-1.onrender.com/api/v1/";
+  //private baseUrl: any = "https://las-ids-backend-1.onrender.com/api/v1/";
   private headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.auth.getToken()
