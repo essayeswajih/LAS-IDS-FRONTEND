@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ export class WebSocketService {
   private socket!: WebSocket;
   private messages$ = new Subject<any>();
   private isConnected = false;
-
+  private wsUrl = environment.wsUrl
   connect(room: string): void {
     if (this.isConnected) {
       console.log('🔄 WebSocket already connected.');
@@ -16,8 +17,7 @@ export class WebSocketService {
     }
 
     // Create a new WebSocket connection to the specified room
-    this.socket = new WebSocket(`ws://localhost:8000/api/v1/ws/${room}`);
-    //this.socket = new WebSocket(`ws://las-ids-backend-1.onrender.com/api/v1/ws/${room}`);
+    this.socket = new WebSocket(`${this.wsUrl}/api/v1/ws/${room}`);
     // On connection open
     this.socket.onopen = () => {
       console.log('✅ WebSocket connected to room:', room);
