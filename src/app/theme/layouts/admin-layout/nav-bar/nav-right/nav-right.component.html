@@ -28,7 +28,7 @@
                   <div class="user-avatar bg-light-danger"><i class="d-flex" antIcon theme="outline" type="bug"></i></div>
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <span class="float-end text-muted">3:00 AM</span>
+                  <span class="float-end text-muted">{{noti.created_at	| date:'short'}}</span>
                   <p class="text-body mb-0">
                     @if(! noti.seen){
                       <b>{{noti.title}}</b>
@@ -37,7 +37,8 @@
                       {{noti.title}}
                     }
                     <br>
-                  <span class="text-muted">2 min ago</span>
+                  <span class="text-muted">{{ noti.created_at | timeAgo }}
+                  </span>
                 </div>
               </div>
             </a>
