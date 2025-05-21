@@ -1,3 +1,4 @@
+@defer (when !isLoading) {
 <h5 class="mb-3">Severity Report</h5>
 <div class="card">
   <div class="card-body">
@@ -20,3 +21,6 @@
     <div *ngIf="isLoading" class="loading">Loading intrusion data...</div>
   </div>
 </div>
+} @loading {
+  <div class="text-center py-3">Loading chart...</div>
+}

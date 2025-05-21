@@ -41,6 +41,7 @@ export class AnalyticsChartComponent {
   // public props
   @ViewChild('chart') chart!: ChartComponent;
   chartOptions!: Partial<ChartOptions>;
+  isLoading = true;
 
   //  constructor
   constructor() {
@@ -105,5 +106,6 @@ export class AnalyticsChartComponent {
         theme: 'light'
       }
     };
+    this.isLoading = false
   }
 }

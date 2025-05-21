@@ -27,6 +27,7 @@ import {
   FilterOutline,
   MailOutline,
   FileOutline,
+  SearchOutline,
 } from '@ant-design/icons-angular/icons';
 import { ApiService } from 'src/app/demo/services/api/api.service';
 import { loadStripe } from '@stripe/stripe-js';
@@ -80,7 +81,8 @@ export class NavContentComponent implements OnInit {
         ChromeOutline,
         QuestionOutline,
         MailOutline,
-        FileOutline
+        FileOutline,
+        SearchOutline
       ]
     );
     this.navigations = NavigationItems;

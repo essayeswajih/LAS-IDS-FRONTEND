@@ -1,5 +1,5 @@
+@defer (when !isLoading) {
 <h5 class="mb-3 mt-2">Requests Overview</h5>
-@defer (when chartOptions) {
 <app-card [showHeader]="false">
   <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
   <h3 class="mb-3">{{total}}</h3>
@@ -16,4 +16,6 @@
     [tooltip]="chartOptions.tooltip"
   ></apx-chart>
 </app-card>
+} @loading {
+  <div class="text-center py-3">Loading chart...</div>
 }

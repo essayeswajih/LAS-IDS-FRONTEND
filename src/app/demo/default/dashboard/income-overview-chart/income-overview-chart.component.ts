@@ -45,11 +45,12 @@ export class IncomeOverviewChartComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   chartOptions!: Partial<ChartOptions>;
   total = 0;
-
+  isLoading = true;
   constructor(private apiService: ApiService) {}
 
   // life cycle hook
   async ngOnInit() {
+    this.isLoading = true;
     const weekOverview = await this.apiService.weekOverview();
     this.total = weekOverview?.counts.reduce((a, b) => a + b, 0);
     this.chartOptions = {
@@ -104,5 +105,6 @@ export class IncomeOverviewChartComponent implements OnInit {
         theme: 'light'
       }
     };
+    this.isLoading = false;
   }
 }

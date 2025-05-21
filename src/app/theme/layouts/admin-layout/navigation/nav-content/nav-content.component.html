@@ -14,6 +14,7 @@
         @if (item.type === 'group' && item.title !== 'Authentication' && item.title !== 'Admin' && item.title !== 'Us' &&item.title!='Removed') {
           <app-nav-group [item]="item"></app-nav-group>
         }
+        
       }
     </ul>
     @if (subscribeIsLoading) {

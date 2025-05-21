@@ -89,22 +89,6 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
-    id: 'any',
-    title: 'Pro',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'IP-Lookup',
-        title: 'IP Lookup',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/IP-Lookup',
-        icon: 'mail'
-      },
-    ]
-  },
-  {
     id: 'utilities',
     title: 'Default',
     type: 'group',
@@ -133,6 +117,14 @@ export const NavigationItems: NavigationItem[] = [
         classes: 'nav-item',
         url: '/reports',
         icon: 'file-text'
+      },
+      {
+        id: 'IP-Lookup',
+        title: 'IP Lookup',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/IP-Lookup',
+        icon: 'search'
       },
       {
         id: 'profile',

@@ -46,7 +46,7 @@ export class TopBarChartComponent implements OnInit {
   chartOptions!: Partial<ChartOptions>;
   activeCategory = 'Paths';
   categories = ['Paths', 'IPs', 'Methods', 'Protocols', 'Users'];
-
+  isLoading = true;
   // Data for each category
   apacheData = {
     Paths: [1200, 1500, 1700, 2000, 2500, 3000, 3200],
@@ -67,6 +67,7 @@ export class TopBarChartComponent implements OnInit {
   async ngOnInit() {
     await this.initData();
     this.initChart();
+    this.isLoading = false;
   }
   async ngOnChanges(changes: SimpleChanges) {
     if (changes['state']) {
