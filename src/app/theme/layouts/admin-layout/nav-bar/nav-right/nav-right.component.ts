@@ -90,8 +90,8 @@ export class NavRightComponent {
     );
   }
   async ngOnInit() {
-    await this.checkSubscriptionStatus()
     this.getUser()
+    this.checkSubscriptionStatus()
     this.notifications = await this.api.getNotifications();
     this.neverSeenCount = this.notifications.filter((noti) => !noti.seen).length;
     console.log(this.notifications);
@@ -171,7 +171,7 @@ export class NavRightComponent {
     this.api.getAuthorizedUserUser().then(
       (res) => {
         console.log(res)
-        
+
         this.user = res
         this.isLoading = false;
       }
