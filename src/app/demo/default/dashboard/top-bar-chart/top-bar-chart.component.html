@@ -1,3 +1,4 @@
+@defer (when !isLoading) {
 <div class="d-flex align-items-center justify-content-between mb-3">
   <h5 class="mb-0">TOP</h5>
   <div class="d-flex gap-2 chart-income">
@@ -30,3 +31,6 @@
   </div>
 }
 </div>
+} @loading {
+  <div class="text-center py-3">Loading chart...</div>
+}

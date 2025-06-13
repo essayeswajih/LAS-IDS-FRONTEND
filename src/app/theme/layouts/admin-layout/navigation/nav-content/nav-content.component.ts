@@ -156,17 +156,24 @@ export class NavContentComponent implements OnInit {
   }
 
   async checkSubscriptionStatus() {
-    this.subscribeIsLoading = true; // Start loading
-    try {
-      const res = await this.paymentService.checkSubscription();
+  this.subscribeIsLoading = true; // Start loading
+  try {
+    const res = await this.paymentService.checkSubscription();
+
+    if (res && typeof res.subscribed === 'boolean') {
       this.isSubscribed = res.subscribed;
-    } catch (error) {
-      console.error('Subscription check error:', error);
+    } else {
+      console.warn('⚠️ Invalid response from checkSubscription:', res);
       this.isSubscribed = false;
-    } finally {
-      this.subscribeIsLoading = false; // Stop loading
     }
+  } catch (error) {
+    console.error('❌ Subscription check error:', error);
+    this.isSubscribed = false;
+  } finally {
+    this.subscribeIsLoading = false; // Stop loading
   }
+}
+
 }
 
 

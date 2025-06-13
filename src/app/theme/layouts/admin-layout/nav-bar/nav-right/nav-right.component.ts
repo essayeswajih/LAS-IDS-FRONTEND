@@ -33,6 +33,7 @@ import {
 } from '@ant-design/icons-angular/icons';
 import { ApiService } from 'src/app/demo/services/api/api.service';
 import { SharedService } from 'src/app/demo/services/shared/shared.service';
+import { StripeService } from 'src/app/demo/stripe/stripe/stripe.service';
 
 @Component({
   selector: 'app-nav-right',
@@ -49,6 +50,8 @@ export class NavRightComponent {
   notifications :any[any] = [];
   neverSeenCount = 0;
   initval = 0;
+  isSubscribed = false;
+  subscribeIsLoading = false; // Loading state for subscription check
   user: any = {
     firstName: '',
     role:""
@@ -58,7 +61,8 @@ export class NavRightComponent {
     private iconService: IconService,
     private auth:AuthService,
     private api: ApiService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private paymentService: StripeService
     ) {
     this.windowWidth = window.innerWidth;
     this.iconService.addIcon(
@@ -86,6 +90,7 @@ export class NavRightComponent {
     );
   }
   async ngOnInit() {
+    await this.checkSubscriptionStatus()
     this.getUser()
     this.notifications = await this.api.getNotifications();
     this.neverSeenCount = this.notifications.filter((noti) => !noti.seen).length;
@@ -166,6 +171,7 @@ export class NavRightComponent {
     this.api.getAuthorizedUserUser().then(
       (res) => {
         console.log(res)
+        
         this.user = res
         this.isLoading = false;
       }
@@ -175,4 +181,23 @@ export class NavRightComponent {
       }
     )
   }
+async checkSubscriptionStatus() {
+  this.subscribeIsLoading = true;
+  try {
+    const res = await this.paymentService.checkSubscription();
+
+    if (res && res.subscribed !== undefined) {
+      this.user.role = res.subscribed ? 'admin' : this.user.role;
+      this.isSubscribed = res.subscribed;
+    } else {
+      console.warn('⚠️ Invalid response from subscription check:', res);
+      this.isSubscribed = false;
+    }
+  } catch (error) {
+    console.error('❌ Subscription check error:', error);
+    this.isSubscribed = false;
+  } finally {
+    this.subscribeIsLoading = false;
+  }
+}
 }
