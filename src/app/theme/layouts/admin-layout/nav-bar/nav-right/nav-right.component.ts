@@ -187,7 +187,7 @@ async checkSubscriptionStatus() {
     const res = await this.paymentService.checkSubscription();
 
     if (res && res.subscribed !== undefined) {
-      this.user.role = res.subscribed ? 'admin' : this.user.role;
+      this.user.role = res.subscribed ? 'pro' : this.user.role;
       this.isSubscribed = res.subscribed;
     } else {
       console.warn('⚠️ Invalid response from subscription check:', res);
